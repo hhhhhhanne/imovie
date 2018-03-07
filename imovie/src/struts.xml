@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.action.excludePattern" value=".*/static/.*" />
+	<constant name="struts.ui.theme" value="simple" />
+	<constant name="struts.devMode" value="true" />
+
+	<package name="default" namespace="/" extends="struts-default">
+
+		<action name="index">
+			<result>/index.jsp</result>
+		</action>
+		<!-- 登录 -->
+		<action name="logon" class="cn.edu.ccnu.action.logonAction">
+			<result name="success">/index.jsp</result>
+			<result name="error">/logindialog.jsp</result>
+		</action>
+		<!-- 登出 -->
+		<action name="logout" method="logoutAct" class="cn.edu.ccnu.action.logonAction">
+			<result name="success">/logout.jsp</result>
+		</action>
+
+		<!-- 注册 -->
+		<action name="register" method="registerAct" class="cn.edu.ccnu.action.logonAction">
+			<result name="success">/registersuc.jsp</result>
+			<result name="error">/register.jsp</result>
+		</action>
+
+		<!-- simple search -->
+		<action name="search" class="cn.edu.ccnu.action.searchAction">
+			<result name="success">/search.jsp</result>
+		</action>
+
+		<action name="movie" class="cn.edu.ccnu.action.movieAction">
+			<result name="success">/movie.jsp</result>
+			<result name="error">/404.jsp</result>
+		</action>
+
+		<action name="order" class="cn.edu.ccnu.action.buyAction">
+			<result name="success">buysuc.jsp</result>
+			<result name="error">logindialog.jsp</result>
+		</action>
+		<action name="myorders" method="showOrdersAct" class="cn.edu.ccnu.action.buyAction">
+		</action>
+		<action name="seat" method="selectSeatAct" class="cn.edu.ccnu.action.buyAction">
+			<result name="success">seat.jsp</result>
+		</action>
+
+		<!-- Demo -->
+		<action name="demo" method="demoAct" class="cn.edu.ccnu.action.logonAction">
+			<result name="success">/demo.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="select" method="demoAct" class="cn.edu.ccnu.action.logonAction">
+			<result name="success">/demo.jsp</result>
+		</action>
+		<action name="insert" method="demoiAct" class="cn.edu.ccnu.action.logonAction">
+			<result name="success">/demo.jsp</result>
+		</action>
+		<action name="update" method="demouAct" class="cn.edu.ccnu.action.logonAction">
+			<result name="success">/demo.jsp</result>
+		</action>
+		<action name="delete" method="demodAct" class="cn.edu.ccnu.action.logonAction">
+			<result name="success">/demo.jsp</result>
+		</action>
+	</package>
+
+</struts>
